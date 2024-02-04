@@ -1,0 +1,21 @@
+name: Pull Request validation
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: deepakputhraya/action-pr-title@master
+        with:
+          allowed_prefixes: "[Feature],[Chore],[Update],[Hotfix],[Config]"
+          prefix_case_sensitive: true
+          min_length: 5
+          max_length: 100
+          github_token: ${{ secrets.GITHUB_TOKEN }}
