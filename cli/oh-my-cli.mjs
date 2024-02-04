@@ -17,6 +17,7 @@ program
 // commands
 
 program.command("init", "Initialize settings");
+program.command("list", "List up todos");
 
 // parsings
 program.showHelpAfterError();

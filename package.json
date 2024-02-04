@@ -5,12 +5,14 @@
   "main": "cli/workflow.mjs",
   "bin": {
     "oh-my-cli": "cli/oh-my-cli.mjs",
-    "oh-my-cli-init": "cli/oh-my-cli-init.mjs"
+    "oh-my-cli-init": "cli/oh-my-cli-init.mjs",
+    "oh-my-cli-list": "cli/oh-my-cli-list.mjs"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "oh-my-cli": "node ./cli/oh-my-cli.mjs",
-    "oh-my-init": "node ./cli/oh-my-cli-init.mjs"
+    "oh-my-init": "node ./cli/oh-my-cli-init.mjs",
+    "oh-my-list": "node ./cli/oh-my-cli-list.mjs"
   },
   "keywords": [],
   "author": "Dovigod",
