@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 import chalk from "chalk";
+import * as context from "../src/context.mjs";
 
 async function main() {
   const program = new Command();
@@ -10,6 +11,8 @@ async function main() {
 
   program.option("-g, --global", "Use global config");
   program.parse();
+
+  await context.config.createConfig();
 }
 
 await main().catch((err) => console.error(err));
