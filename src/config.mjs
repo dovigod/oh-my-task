@@ -7,6 +7,7 @@ import fs from "fs/promises";
 import { parse, stringify } from "yaml";
 import { readFileSync } from "fs";
 import chalk from "chalk";
+import * as input from "./cli-input.mjs";
 
 const PACKAGE = JSON.parse(
   readFileSync(new URL("../package.json", import.meta.url), "utf-8")
@@ -51,12 +52,16 @@ export class Config {
    */
   async createConfig(
     settings = {
-      name: PACKAGE.name,
-      fileToRecord: "README.md",
+      name: this.#PACKAGE.name,
+      pathToRecord: "./README.md",
       heading: "Todo List",
     }
   ) {
     const previousConfig = await this.getConfig().catch(() => null);
+
+    const name = settings.name;
+    let pathToRecord = settings.pathToRecord;
+    let heading = settings.heading;
 
     if (previousConfig) {
       console.warn(
@@ -66,8 +71,18 @@ export class Config {
       );
     }
 
+    pathToRecord = await input.enterText(
+      "Enter path to record (baseDir: root of project): ",
+      pathToRecord
+    );
+    heading = await input.enterText("Enter headings of To Do List: ", heading);
+
     const config = {
-      project: settings,
+      project: {
+        name,
+        pathToRecord,
+        heading,
+      },
     };
 
     await fs.writeFile(this.configPath, stringify(config)).catch(console.error);
