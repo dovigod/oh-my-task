@@ -13,7 +13,6 @@ async function main() {
   program.parse();
 
   await context.config.createConfig();
-  await context.config.createConfig();
 }
 
 await main().catch((err) => console.error(err));
