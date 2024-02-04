@@ -1,0 +1,4 @@
+project:
+  name: oh-my-cli
+  fileToRecord: README.md
+  heading: Todo List
