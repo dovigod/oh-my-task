@@ -17,6 +17,7 @@ program
 // commands
 
 program.command("init", "Initialize settings");
+program.command("create", "Create Task To Do");
 
 // parsings
 program.showHelpAfterError();

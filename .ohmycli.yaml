@@ -1,4 +1,4 @@
 project:
   name: oh-my-cli
   pathToRecord: ./README.md
-  heading: heading
+  heading: Todo List
