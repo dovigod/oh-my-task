@@ -13,3 +13,12 @@ export async function confirm(message, defaultValue = true) {
     message,
   });
 }
+
+export async function select(message, choices, defaultValue = "123") {
+  return inquirer.select({
+    message,
+    choices,
+    loop: false,
+    default: defaultValue,
+  });
+}

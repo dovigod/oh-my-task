@@ -27,6 +27,7 @@ async function exec(
   if (options.global) {
     context.manifest.initializeHistory();
     return;
+  } else {
+    await context.manifest.createConfig();
   }
-  await context.manifest.createConfig();
 }
