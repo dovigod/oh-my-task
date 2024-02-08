@@ -1,5 +1,7 @@
-import { Config } from "./config.mjs";
+import { Manifest } from "./manifest.mjs";
+import os from "os";
 
-const configPath = `${process.cwd()}/.ohmycli.yaml`;
+const DefaultHistoryPath = `${os.homedir()}/.omc/history.yaml`;
+const configPath = `${process.cwd()}/.omc.yaml`;
 
-export const config = new Config(configPath);
+export const manifest = new Manifest(configPath, DefaultHistoryPath);
