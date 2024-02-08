@@ -9,9 +9,8 @@ import { parse, stringify } from "yaml";
 import { readFileSync } from "fs";
 import chalk from "chalk";
 import * as input from "./input.mjs";
-import os from "os";
 import path from "path";
-import crypto from "node:crypto";
+import * as crypto from "./utils/crypto.mjs";
 
 const PACKAGE = JSON.parse(
   readFileSync(new URL("../package.json", import.meta.url), "utf-8")
@@ -69,7 +68,7 @@ export class Manifest {
     const previousConfig = await this.getConfig().catch(() => null);
 
     const name = settings.name;
-    const projectKey = crypto.createHash("sha256").update(name).digest("hex");
+    const projectKey = crypto.sha256(name);
     let fileToSync = "README.md";
     let heading = "Task List";
 
@@ -168,8 +167,8 @@ export class Manifest {
     const historyCollection = parse(fileContent) ?? {};
     const { project } = await this.getConfig();
 
-    if (!historyConfig[project.key]) {
-      historyConfig[project.key] = {};
+    if (!historyCollection[project.key]) {
+      historyCollection[project.key] = {};
     }
 
     historyCollection[project.key][taskKey] = value;

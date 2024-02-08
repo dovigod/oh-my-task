@@ -1,9 +1,18 @@
 import * as inquirer from "@inquirer/prompts";
 
-export async function enterText(message, defaultValue) {
+export async function enterText(message, defaultValue, validate = undefined) {
   return inquirer.input({
     default: defaultValue,
     message,
+    validate,
+  });
+}
+
+export async function requiredText(message, defaultValue) {
+  return enterText(message, defaultValue, (input) => {
+    return input.trim().length !== 0
+      ? true
+      : "input should be longer than 0 character";
   });
 }
 
