@@ -4,6 +4,7 @@
  */
 
 import fs from "fs/promises";
+import fsSync from "fs";
 import { parse, stringify } from "yaml";
 import { readFileSync } from "fs";
 import chalk from "chalk";
@@ -69,6 +70,11 @@ export class Manifest {
 
     const name = settings.name;
     const projectKey = crypto.createHash("sha256").update(name).digest("hex");
+    let fileToSync = "README.md";
+    let heading = "Task List";
+
+    //should be relative in case of developer developing in different environment.
+    const dir = "./";
 
     if (previousConfig) {
       console.warn(
@@ -78,17 +84,31 @@ export class Manifest {
       );
     }
 
-    pathToRecord = await input.enterText(
-      "Enter path to record (baseDir: root of project): ",
-      pathToRecord
+    // no recursive.
+    const dirs = fsSync.readdirSync(dir, { withFileTypes: true });
+
+    const files = dirs
+      .filter((dir) => dir.isFile())
+      .map((dirent) => {
+        return {
+          key: dirent.name,
+          name: dirent.name,
+          value: dirent.name,
+        };
+      });
+
+    fileToSync = await input.select(
+      "Select File where to Record(Sync): ",
+      files,
+      fileToSync
     );
-    heading = await input.enterText("Enter headings of Task: ", heading);
+    heading = await input.enterText("Enter heading of task list: ", heading);
 
     const config = {
       project: {
         key: projectKey,
         name,
-        pathToRecord,
+        sync: fileToSync,
         heading,
       },
     };
@@ -103,7 +123,7 @@ export class Manifest {
     this.historyPath = historyPath;
   }
 
-  async #createGlobalFolder() {
+  async #createHistoryFolder() {
     const folderPath = path.dirname(this.historyPath);
     return fs.mkdir(folderPath, { recursive: true });
   }
@@ -163,17 +183,23 @@ export class Manifest {
    * @returns { void }
    */
   async initializeHistory() {
-    await this.#createGlobalFolder();
-    const history = await this.getHistory();
+    await this.#createHistoryFolder();
+    const history = await this.#getEntireHistory();
     if (history !== null) {
-      console.warn("Current history file:", history);
-      const overwrite = await input.confirm(this.historyPath);
+      console.warn("Current history file exist:", history);
+      const overwrite = await input.confirm(
+        `${chalk.red(
+          "History won't be able to recover after overwrite."
+        )} Continue?`,
+        this.historyPath
+      );
       if (!overwrite) {
         return;
       }
     }
 
-    await fs.writeFile(this.historyPath, stringify({}));
+    await fs.writeFile(this.historyPath, "");
+    console.log(`History file created to ${this.historyPath}`);
   }
 
   /**
