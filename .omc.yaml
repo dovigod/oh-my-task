@@ -1,0 +1,5 @@
+project:
+  key: 99af8975ac9f275c5931aade190204aca2025c3d248b5628d90afd098d630a52
+  name: oh-my-cli
+  sync: README.md
+  heading: My Task List
