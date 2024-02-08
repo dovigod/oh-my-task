@@ -1,10 +1,10 @@
 import chalk from "chalk";
 import * as context from "../context.mjs";
-import * as input from "../cli-input.mjs";
+import * as input from "../input.mjs";
 import { Task } from "./Task.mjs";
 
 export async function create() {
-  const config = await context.config.getConfig();
+  const config = await context.manifest.getConfig();
 
   if (config === null) {
     throw new Error("No config found");
@@ -24,10 +24,8 @@ export async function create() {
   }
 
   const task = new Task(title, description);
+  const taskKey = task.key;
 
-  //@TODO need global file to distinguish each project
-  // await context.config.
-  // await factory.config.setHistoryConfig("lastCreatedTicketKey", issue.key);
-
-  // return issue.key;
+  await context.manifest.setHistory(taskKey, task.objectify());
+  return taskKey;
 }
