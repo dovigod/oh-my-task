@@ -1,7 +1,7 @@
 import chalk from "chalk";
-import * as context from "./context.mjs";
-import * as markdown from "./markdown.mjs";
-import { Formatter } from "./formatter.mjs";
+import * as context from "../context.mjs";
+import * as markdown from "../markdown.mjs";
+import { Formatter } from "../formatter.mjs";
 import fs from "fs/promises";
 
 const PLACEHOLDER_START = "<!-->Start of Placeholder of OH-MY-TASK<-->";
