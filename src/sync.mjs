@@ -50,10 +50,13 @@ async function inject(filepath, content) {
   const fileContent = await fs.readFile(filepath, { encoding: "utf-8" });
 
   // discard file content inside placeholder  (if previous content exists)
-  let updatedContent = fileContent.replace(
-    `\/${PLACEHOLDER_START}.*${PLACEHOLDER_END}/`,
-    ""
+  const regex = new RegExp(
+    `(${PLACEHOLDER_START}).*?(${PLACEHOLDER_END})`,
+    "gs"
   );
+
+  let updatedContent = fileContent.replace(regex, "$1$2");
+
   // inject
   updatedContent = updatedContent.replace(
     PLACEHOLDER_START,
