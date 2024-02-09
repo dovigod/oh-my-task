@@ -1,6 +1,6 @@
 import { TASK_STATUS } from "./status.mjs";
 
-const emoji = {
+export const emoji = {
   [TASK_STATUS.IDLE]: "❌",
   [TASK_STATUS.WORKING]: "💻",
   [TASK_STATUS.COMPLETE]: "✅",
@@ -10,15 +10,15 @@ export function isMarkdown(filename) {
   return RegExp(/^.*\.(md)$/).test(filename);
 }
 
-export function pipe(text, typeList) {
-  return typeList.reduce((reformed, type) => {
-    return format(reformed, type);
+export function pipe(text, formatTypeList) {
+  return formatTypeList.reduce((reformed, formatType) => {
+    return format(reformed, formatType);
   }, text);
 }
 
 // basicly each types is same as tag names of html, execptions for those doesn't exist in html
 export function format(text, type) {
-  switch (type.toLowercase()) {
+  switch (type.toLowerCase()) {
     case "h1": {
       return _toH1(text);
     }
@@ -62,9 +62,13 @@ export function format(text, type) {
       return _blockquote(text);
     }
 
-    case [TASK_STATUS.IDLE] || [TASK_STATUS.COMPLETE] || [
-        TASK_STATUS.WORKING,
-      ]: {
+    case TASK_STATUS.IDLE: {
+      return _status(text, type);
+    }
+    case TASK_STATUS.WORKING: {
+      return _status(text, type);
+    }
+    case TASK_STATUS.COMPLETE: {
       return _status(text, type);
     }
 

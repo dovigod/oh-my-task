@@ -1,6 +1,8 @@
 import chalk from "chalk";
 import * as context from "./context.mjs";
 import * as input from "./input.mjs";
+import * as markdown from "./markdown.mjs";
+import { Formatter } from "./formatter.mjs";
 
 export async function sync() {
   const config = await context.manifest.getConfig();
@@ -25,8 +27,18 @@ export async function sync() {
     };
   });
 
-  const isMd = isMarkdown();
+  const syncToFileType = getFileType(syncTo);
 
-  if (isMd) {
+  const formatter = new Formatter(syncToFileType, heading, taskList);
+  const formattedStringToInject = formatter.run();
+
+  console.log(formattedStringToInject);
+}
+
+function getFileType(file) {
+  if (markdown.isMarkdown(file)) {
+    return "md";
+  } else {
+    return "plain";
   }
 }
