@@ -58,10 +58,21 @@ async function inject(filepath, content) {
   let updatedContent = fileContent.replace(regex, "$1$2");
 
   // inject
-  updatedContent = updatedContent.replace(
-    PLACEHOLDER_START,
-    `${PLACEHOLDER_START}\n${content}`
-  );
+  const placeholderExist =
+    updatedContent.includes(PLACEHOLDER_START) &&
+    updatedContent.includes(PLACEHOLDER_END);
+
+  // inject - general case
+  if (placeholderExist) {
+    updatedContent = updatedContent.replace(
+      PLACEHOLDER_START,
+      `${PLACEHOLDER_START}\n${content}`
+    );
+  } else {
+    // no placeholder
+    updatedContent += `${PLACEHOLDER_START}\n${content}\n${PLACEHOLDER_END}`;
+  }
+
   await fs.writeFile(filepath, updatedContent).catch(console.error);
 }
 
