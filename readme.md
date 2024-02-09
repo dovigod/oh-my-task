@@ -6,15 +6,6 @@ dawdaw
 
 ## testing
 
-<!-->Start of Placeholder of OH-MY-TASK<-->
-## my task list
-
-- ❌ task1
-  > this is task 1
-
-- ❌ task2
-  <!-->End of Placeholder of OH-MY-TASK<-->
-
 daw
 dawdaw
 
