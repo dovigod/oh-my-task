@@ -18,6 +18,7 @@ program
 
 program.command("init", "Initialize settings");
 program.command("list", "List up todos");
+program.command("create", "Create Task To Do");
 
 // parsings
 program.showHelpAfterError();
