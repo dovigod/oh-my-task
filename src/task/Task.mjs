@@ -7,11 +7,16 @@ export class Task {
   title;
   description;
 
-  constructor(title, description) {
+  // inverse of objectify
+  static build(taskObj) {
+    return new Task(taskObj.title, taskObj.description, taskObj.status);
+  }
+
+  constructor(title, description, state = TASK_STATUS.IDLE) {
     this.key = crypto.sha256(`task::${title}-${description}`);
     this.title = title;
     this.description = description;
-    this.#status = TASK_STATUS.IDLE;
+    this.#status = state;
   }
   getProgress() {
     return this.#status;
@@ -21,6 +26,7 @@ export class Task {
     return (this.#status = state);
   }
 
+  // inverse of build
   objectify() {
     return {
       title: this.title,
