@@ -7,7 +7,7 @@ export async function create() {
   const config = await context.manifest.getConfig();
 
   if (config === null) {
-    throw new Error("No config found");
+    throw new Error("No config found for current project");
   }
 
   // title is Required
