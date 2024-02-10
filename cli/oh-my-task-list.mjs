@@ -8,13 +8,12 @@ async function listCommand() {
   program
     .name("oh-my-task-list")
     .option("-a, --all", `list up all todos including "complete" status`)
-    .description(
-      `Find Todos from ${chalk.bgMagenta(
-        "README.md"
-      )}(case sensitive) and list up`
-    );
+    .description(`Find Tasks and list up.`);
 
   program.parse();
+
+  const options = program.opts();
+  console.log(options);
 }
 
 await listCommand().catch((error) => console.error(error));

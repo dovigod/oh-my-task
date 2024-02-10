@@ -3,7 +3,7 @@ import { Command } from "commander";
 import chalk from "chalk";
 import * as context from "../src/context.mjs";
 
-async function main() {
+async function initCommand() {
   const program = new Command();
   program.name("oh-my-task-init")
     .description(`Initialize settings for current project.\n
@@ -17,7 +17,7 @@ async function main() {
   await exec(options);
 }
 
-await main().catch((err) => console.error(err));
+await initCommand().catch((err) => console.error(err));
 
 async function exec(
   options = {
