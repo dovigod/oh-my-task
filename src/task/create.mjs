@@ -28,16 +28,44 @@ export async function create(
     description = await input.enterText(`Enter Description : `, "");
   }
 
+  //prepare base branch
   let baseBranch;
   if (options.current) {
-    baseBranch = await git.selectBranch("Select Base Branch", true);
+    const branchList = git.getBranchList();
+    const currentBranch = git.getCurrentBranchName();
+    console.log(branchList, currentBranch);
+    const remoteOfCurrentBranch = branchList.find((remoteBranch) =>
+      remoteBranch.includes(currentBranch)
+    );
+
+    if (!remoteOfCurrentBranch) {
+      console.warn(
+        `${chalk.yellow(
+          "Seems there isn't remote branch matching with current branch. Please check if current branch is pushed"
+        )}`
+      );
+      baseBranch = await git.selectBranch(
+        `${chalk.yellow("Fallback")}, Select Base Branch`,
+        true
+      );
+    } else {
+      baseBranch = remoteOfCurrentBranch;
+    }
   } else {
     baseBranch = await git.selectBranch("Select Base Branch", true);
   }
 
+  // create task and record
   const task = new Task(title, description, baseBranch);
   const taskKey = task.key;
 
   await context.manifest.setHistory(taskKey, task.objectify());
+
+  //checkout to new branch (branch name base on task title)
+  const taskBranch = git.toBranchName(title);
+  console.log(taskBranch);
+  await git.create(taskBranch, baseBranch);
+  await git.checkout(taskBranch);
+  await git.push(true);
   return taskKey;
 }
