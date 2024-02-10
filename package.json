@@ -1,19 +1,22 @@
 {
-  "name": "oh-my-cli",
+  "name": "oh-my-task",
   "version": "0.0.0",
-  "description": "OH-MY-CLI is mainly focused to help indie developers to manage their projects neatly",
+  "description": "OH-MY-TASK is mainly focused to help indie developers to manage their projects neatly",
   "main": "cli/workflow.mjs",
   "bin": {
-    "oh-my-cli": "cli/oh-my-cli.mjs",
-    "oh-my-cli-init": "cli/oh-my-cli-init.mjs",
-    "oh-my-cli-create": "cli/oh-my-cli-create.mjs"
+    "oh-my-task": "cli/oh-my-task.mjs",
+    "oh-my-task-init": "cli/oh-my-task-init.mjs",
+    "oh-my-task-create": "cli/oh-my-task-create.mjs",
+    "oh-my-task-sync": "cli/oh-my-task-sync.mjs",
+    "oh-my-task-list": "cli/oh-my-task-list.mjs"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "omc": "node ./cli/oh-my-cli.mjs",
-    "omc-init": "node ./cli/oh-my-cli-init.mjs",
-    "omc-create": "node ./cli/oh-my-cli-create.mjs",
-    "omc-sync": "node ./cli/oh-my-cli-sync.mjs"
+    "omt": "node ./cli/oh-my-task.mjs",
+    "omt-init": "node ./cli/oh-my-task-init.mjs",
+    "omt-create": "node ./cli/oh-my-task-create.mjs",
+    "omt-sync": "node ./cli/oh-my-task-sync.mjs",
+    "omt-list": "node ./cli/oh-my-task-list.mjs"
   },
   "keywords": [],
   "author": "Dovigod",

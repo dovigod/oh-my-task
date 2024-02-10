@@ -7,9 +7,9 @@ import { sync } from "../src/sync.mjs";
 async function SyncCommand() {
   const program = new Command();
   program
-    .name("oh-my-cli-sync")
+    .name("oh-my-task-sync")
     .description(
-      `Sync Histories to file specified at project configuration file(.omc.yaml)`
+      `Sync Histories to file specified at project configuration file(.omt.yaml)`
     );
   program.parse();
 

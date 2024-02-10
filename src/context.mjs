@@ -1,7 +1,7 @@
 import { Manifest } from "./manifest.mjs";
 import os from "os";
 
-const DefaultHistoryPath = `${os.homedir()}/.omc/history.yaml`;
-const configPath = `${process.cwd()}/.omc.yaml`;
+const DefaultHistoryPath = `${os.homedir()}/.omt/history.yaml`;
+const configPath = `${process.cwd()}/.omt.yaml`;
 
 export const manifest = new Manifest(configPath, DefaultHistoryPath);

@@ -57,7 +57,7 @@ export class Manifest {
   /**
    * **NOTE** Re-runing this function will overwrite current configuration which may result unexpected behavior.
    *
-   * create ".omc.yaml" (local project manifest file)
+   * create ".omt.yaml" (local project manifest file)
    * @returns { Promise<void> }
    */
   async createConfig(
