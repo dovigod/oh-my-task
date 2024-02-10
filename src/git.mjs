@@ -36,11 +36,13 @@ export async function checkout(branch) {
   return branch;
 }
 
-export async function push(withUpStream = false) {
+export async function push(withSettingCurrentBranchUpStream = false) {
   let pushResult;
 
-  if (withUpStream) {
-    pushResult = git("push", ["-u", "origin", localBranch], {
+  if (withSettingCurrentBranchUpStream) {
+    const currentBranch = git("branch", "--show-current");
+
+    pushResult = git("push", ["-u", "origin", currentBranch], {
       stdio: ["inherit", process.stdout, process.stderr],
     });
   } else {
