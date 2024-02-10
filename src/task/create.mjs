@@ -64,11 +64,11 @@ export async function create(
 
   // --select checkout to new branch (branch name base on task title)
   if (options.select) {
+    //@TODO feature , chore ,update ... selection
     const taskBranch = git.toBranchName(title);
     await git.create(taskBranch, baseBranch);
     await git.checkout(taskBranch);
     await git.push(true);
   }
-
   return taskKey;
 }
