@@ -6,17 +6,24 @@ export class Task {
   #status;
   title;
   description;
+  baseBranch;
 
   // inverse of objectify
   static build(taskObj) {
-    return new Task(taskObj.title, taskObj.description, taskObj.status);
+    return new Task(
+      taskObj.title,
+      taskObj.description,
+      taskObj.baseBranch,
+      taskObj.status
+    );
   }
 
-  constructor(title, description, state = TASK_STATUS.IDLE) {
+  constructor(title, description, baseBranch, state = TASK_STATUS.IDLE) {
     this.key = crypto.sha256(`task::${title}-${description}`);
     this.title = title;
     this.description = description;
     this.#status = state;
+    this.baseBranch = baseBranch;
   }
   getProgress() {
     return this.#status;
@@ -32,6 +39,7 @@ export class Task {
       title: this.title,
       description: this.description,
       status: this.#status,
+      baseBranch: this.baseBranch,
     };
   }
 }

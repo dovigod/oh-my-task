@@ -1,9 +1,14 @@
 import chalk from "chalk";
 import * as context from "../context.mjs";
 import * as input from "../input.mjs";
+import * as git from "../git.mjs";
 import { Task } from "./Task.mjs";
 
-export async function create() {
+export async function create(
+  options = {
+    current: false,
+  }
+) {
   const config = await context.manifest.getConfig();
 
   if (config === null) {
@@ -23,7 +28,14 @@ export async function create() {
     description = await input.enterText(`Enter Description : `, "");
   }
 
-  const task = new Task(title, description);
+  let baseBranch;
+  if (options.current) {
+    baseBranch = await git.selectBranch("Select Base Branch", true);
+  } else {
+    baseBranch = await git.selectBranch("Select Base Branch", true);
+  }
+
+  const task = new Task(title, description, baseBranch);
   const taskKey = task.key;
 
   await context.manifest.setHistory(taskKey, task.objectify());

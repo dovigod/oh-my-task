@@ -4,10 +4,23 @@ import { create } from "../src/task/create.mjs";
 
 async function createCommand() {
   const program = new Command();
-  program.name("oh-my-task-create").description(`Creates Task to work.`);
+  program
+    .name("oh-my-task-create")
+    .option("-c, --current", "Set base branch to current branch(remote)")
+    .description(`Creates Task to work.`);
   program.parse();
 
-  await create();
+  const options = program.opts();
+
+  const createOptions = {
+    current: false,
+  };
+
+  if (options.current) {
+    createOptions.current = options.current;
+  }
+
+  await create(createOptions);
 }
 
 await createCommand().catch((err) => console.error(err));

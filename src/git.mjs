@@ -102,7 +102,7 @@ export function getCurrentBranchName() {
 
 export async function selectBranch(message = "Select Branch", remote = true) {
   const command = remote
-    ? "git branch -a --format='%(refname:short)'"
+    ? "git branch -r"
     : "git branch --format='%(refname:short)'";
 
   const branchRetrieveResult = execSync(command, {
@@ -111,8 +111,12 @@ export async function selectBranch(message = "Select Branch", remote = true) {
 
   const branches = branchRetrieveResult
     .split("\n")
-    .filter((branch) => branch !== "");
+    .filter((branch) => branch !== "" && !branch.includes("HEAD"))
+    .map((branch) => branch.trim());
 
+  if (remote) {
+    console.log(branches);
+  }
   return input.select(
     message,
     branches.map((branch) => ({ value: branch })),
