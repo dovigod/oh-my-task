@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 import { Command } from "commander";
-import chalk from "chalk";
-import * as context from "../src/context.mjs";
 import { create } from "../src/task/create.mjs";
 
 async function createCommand() {

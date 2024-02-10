@@ -1,0 +1,5 @@
+project:
+  key: d0e2b9c902d108e47a51539c71c722364ed970f9475a3e97b9f9ffae6f0126c8
+  name: oh-my-task
+  sync: readme.md
+  heading: Task List
