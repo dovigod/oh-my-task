@@ -7,6 +7,7 @@ import { Task } from "./Task.mjs";
 export async function create(
   options = {
     current: false,
+    select: false,
   }
 ) {
   const config = await context.manifest.getConfig();
@@ -61,11 +62,13 @@ export async function create(
 
   await context.manifest.setHistory(taskKey, task.objectify());
 
-  //checkout to new branch (branch name base on task title)
-  const taskBranch = git.toBranchName(title);
-  console.log(taskBranch);
-  await git.create(taskBranch, baseBranch);
-  await git.checkout(taskBranch);
-  await git.push(true);
+  // --select checkout to new branch (branch name base on task title)
+  if (options.select) {
+    const taskBranch = git.toBranchName(title);
+    await git.create(taskBranch, baseBranch);
+    await git.checkout(taskBranch);
+    await git.push(true);
+  }
+
   return taskKey;
 }
