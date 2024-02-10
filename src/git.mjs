@@ -5,6 +5,7 @@ function git(
   command,
   params,
   options = {
+    encoding: "utf-8",
     stdio: "inherit",
   }
 ) {
@@ -40,10 +41,11 @@ export async function push(withSettingCurrentBranchUpStream = false) {
   let pushResult;
 
   if (withSettingCurrentBranchUpStream) {
-    const currentBranch = git("branch", "--show-current");
+    const currentBranch = getCurrentBranchName();
 
     pushResult = git("push", ["-u", "origin", currentBranch], {
-      stdio: ["inherit", process.stdout, process.stderr],
+      encoding: "utf-8",
+      stdio: "inherit",
     });
   } else {
     pushResult = git("push");
@@ -91,4 +93,29 @@ export async function setUpStream(remoteBranch) {
   if (setUpStreamResult.status !== 0) {
     throw new Error("Failed to set upstream");
   }
+}
+
+export function getCurrentBranchName() {
+  const output = execSync(`git branch --show-current`, { encoding: "utf8" });
+  return output.trim();
+}
+
+export async function selectBranch(message = "Select Branch", remote = true) {
+  const command = remote
+    ? "git branch -a --format='%(refname:short)'"
+    : "git branch --format='%(refname:short)'";
+
+  const branchRetrieveResult = execSync(command, {
+    encoding: "utf8",
+  });
+
+  const branches = branchRetrieveResult
+    .split("\n")
+    .filter((branch) => branch !== "");
+
+  return input.select(
+    message,
+    branches.map((branch) => ({ value: branch })),
+    ["value"]
+  );
 }

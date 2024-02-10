@@ -11,7 +11,7 @@ async function test() {
 
   const options = program.opts();
 
-  await git.push(true);
+  await git.selectBranch("Select Branch ::", true);
 }
 
 await test().catch((error) => console.error(error));
