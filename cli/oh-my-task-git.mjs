@@ -11,7 +11,7 @@ async function test() {
 
   const options = program.opts();
 
-  await git.push();
+  await git.push(true);
 }
 
 await test().catch((error) => console.error(error));

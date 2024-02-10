@@ -36,8 +36,16 @@ export async function checkout(branch) {
   return branch;
 }
 
-export async function push() {
-  const pushResult = git("push");
+export async function push(withUpStream = false) {
+  let pushResult;
+
+  if (withUpStream) {
+    pushResult = git("push", ["-u", "origin", localBranch], {
+      stdio: ["inherit", process.stdout, process.stderr],
+    });
+  } else {
+    pushResult = git("push");
+  }
 
   if (pushResult.status !== 0) {
     throw new Error("Failed to push");
@@ -68,5 +76,17 @@ export async function merge(branch) {
 
   if (result.status !== 0) {
     throw new Error("Failed to merge");
+  }
+}
+
+/**
+ *
+ * @param {string} remoteBranch - origin/${branchName}
+ */
+export async function setUpStream(remoteBranch) {
+  const setUpStreamResult = git("branch", ["--set-upstream-to", remoteBranch]);
+
+  if (setUpStreamResult.status !== 0) {
+    throw new Error("Failed to set upstream");
   }
 }
