@@ -1,4 +1,4 @@
-# OH-MY-CLI
+# OH-MY-TASK
 
 awdwad
 wadwa

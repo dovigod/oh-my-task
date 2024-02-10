@@ -6,7 +6,7 @@ import { create } from "../src/task/create.mjs";
 
 async function createCommand() {
   const program = new Command();
-  program.name("oh-my-cli-create").description(`Creates Task to work.`);
+  program.name("oh-my-task-create").description(`Creates Task to work.`);
   program.parse();
 
   await create();

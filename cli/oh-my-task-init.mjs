@@ -5,7 +5,7 @@ import * as context from "../src/context.mjs";
 
 async function main() {
   const program = new Command();
-  program.name("oh-my-cli-init")
+  program.name("oh-my-task-init")
     .description(`Initialize settings for current project.\n
     ${chalk.green("(Entry Command for every project)")}`);
 
