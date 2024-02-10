@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
-import chalk from "chalk";
+import { list } from "../src/task/list.mjs";
 
 async function listCommand() {
   const program = new Command();
@@ -13,7 +13,16 @@ async function listCommand() {
   program.parse();
 
   const options = program.opts();
-  console.log(options);
+
+  const listOptions = {
+    all: false,
+  };
+
+  if (options.all) {
+    listOptions.all = options.all;
+  }
+
+  await list(listOptions);
 }
 
 await listCommand().catch((error) => console.error(error));
