@@ -102,7 +102,7 @@ export function getCurrentBranchName() {
 
 export async function selectBranch(message = "Select Branch", remote = true) {
   const command = remote
-    ? "git branch -a --format='%(refname:short)'"
+    ? "git branch -r"
     : "git branch --format='%(refname:short)'";
 
   const branchRetrieveResult = execSync(command, {
@@ -111,11 +111,41 @@ export async function selectBranch(message = "Select Branch", remote = true) {
 
   const branches = branchRetrieveResult
     .split("\n")
-    .filter((branch) => branch !== "");
+    .filter((branch) => branch !== "" && !branch.includes("HEAD"))
+    .map((branch) => branch.trim());
 
   return input.select(
     message,
     branches.map((branch) => ({ value: branch })),
     ["value"]
   );
+}
+
+export function getBranchList(remote = true) {
+  const command = remote
+    ? "git branch -r"
+    : "git branch --format='%(refname:short)'";
+
+  const branchRetrieveResult = execSync(command, {
+    encoding: "utf8",
+  });
+
+  const branches = branchRetrieveResult
+    .split("\n")
+    .filter((branch) => branch !== "" && !branch.includes("HEAD"))
+    .map((branch) => branch.trim());
+
+  return branches;
+}
+
+/**
+ *
+ * https://git-scm.com/docs/git-check-ref-format
+ *  . \ @ { } ? [ ] * space ~  ^ : ; ! ' " # $ % & ( ) |-> ''
+ *
+ */
+export function toBranchName(title) {
+  let name = title.replace(/[.\\@{}?\[\]\*~^:;!'"#$%^&)(|]/g, "");
+  name = name.replaceAll(" ", "-");
+  return name.toLowerCase();
 }
