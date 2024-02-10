@@ -8,7 +8,8 @@
     "oh-my-task-init": "cli/oh-my-task-init.mjs",
     "oh-my-task-create": "cli/oh-my-task-create.mjs",
     "oh-my-task-sync": "cli/oh-my-task-sync.mjs",
-    "oh-my-task-list": "cli/oh-my-task-list.mjs"
+    "oh-my-task-list": "cli/oh-my-task-list.mjs",
+    "omt-git": "cli/oh-my-task-git.mjs"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,7 +17,8 @@
     "omt-init": "node ./cli/oh-my-task-init.mjs",
     "omt-create": "node ./cli/oh-my-task-create.mjs",
     "omt-sync": "node ./cli/oh-my-task-sync.mjs",
-    "omt-list": "node ./cli/oh-my-task-list.mjs"
+    "omt-list": "node ./cli/oh-my-task-list.mjs",
+    "omt-git": "node ./cli/oh-my-task-git.mjs"
   },
   "keywords": [],
   "author": "Dovigod",
