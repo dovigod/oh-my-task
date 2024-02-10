@@ -31,3 +31,9 @@ export async function select(message, choices, defaultValue = "123") {
     default: defaultValue,
   });
 }
+
+// export async function token(message) {
+//   return inquirer.password({
+//     message,
+//   });
+// }

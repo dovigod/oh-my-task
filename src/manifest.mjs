@@ -27,14 +27,35 @@ const PACKAGE = JSON.parse(
 export class Manifest {
   _config = null;
   _history = null;
+  // _user = null;
   #PACKAGE = {};
 
   constructor(configPath, historyPath) {
     this.configPath = configPath;
     this.historyPath = historyPath;
+    // this.userConfigPath = userConfigPath;
     this.#PACKAGE = PACKAGE;
   }
 
+  // async getUserConfig() {}
+
+  // async createUserConfig() {
+  //   await this.#createGlobalFolder();
+
+  //   const userConfig = await this.getUserConfig();
+  //   if (userConfig !== null) {
+  //     console.log("Current user configuration exists:", userConfig);
+  //     const overwrite = await input.confirm(`${chalk.red(
+  //       "User configuration won't be able to recover after overwrite."
+  //     )} Continue?`, false);
+  //     if (!overwrite) {
+  //       return;
+  //     }
+  //   }
+
+  //   const gitToken = await input.token('Enter git api token (Link: https://github.com/settings/tokens) : ');
+
+  // }
   /**
    * @returns { Promise<LocalConfig | null> } objectified Local configuration
    */
@@ -122,7 +143,7 @@ export class Manifest {
     this.historyPath = historyPath;
   }
 
-  async #createHistoryFolder() {
+  async #createGlobalFolder() {
     const folderPath = path.dirname(this.historyPath);
     return fs.mkdir(folderPath, { recursive: true });
   }
@@ -182,7 +203,7 @@ export class Manifest {
    * @returns { void }
    */
   async initializeHistory() {
-    await this.#createHistoryFolder();
+    await this.#createGlobalFolder();
     const history = await this.#getEntireHistory();
     if (history !== null) {
       console.warn("Current history file exist:", history);
