@@ -71,9 +71,9 @@ export async function create(
     await git.create(taskBranch, baseBranch);
     await git.checkout(taskBranch);
     await git.push(true);
-    task.select();
+    task.select(TASK_STATUS.WORKING);
 
-    console.log(`Successfuly Selected Task ${taskKey}`);
+    console.log(`Successfuly Selected Task ${chalk.blueBright(taskKey)}`);
     console.log(
       `${emoji[TASK_STATUS.WORKING]} HAPPY CODING!! ${
         emoji[TASK_STATUS.WORKING]

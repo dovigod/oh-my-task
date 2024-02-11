@@ -1,4 +1,4 @@
-import { TASK_STATUS } from "../status.mjs";
+import { TASK_STATUS, TASK_STATUS_TEXT } from "../status.mjs";
 import * as crypto from "../utils/crypto.mjs";
 import chalk from "chalk";
 export class Task {
@@ -35,16 +35,17 @@ export class Task {
   }
 
   select(state) {
-    const previousState = this.getProgress();
+    const previousStateText = TASK_STATUS_TEXT[this.getProgress()];
+    const currentStateText = TASK_STATUS_TEXT[state];
 
     console.log(`switching to Task ${this.key}..`);
 
     this.setProgress(state);
 
     console.log(
-      `Task ${this.key} progress change ${chalk.gray(
-        previousState
-      )} -> ${chalk.green(state)} complete`
+      `Task ${chalk.blueBright(this.key)} progress change ${chalk.gray(
+        previousStateText
+      )} -> ${chalk.green(currentStateText)} complete`
     );
   }
 
