@@ -25,6 +25,10 @@ program.command(
   "pr",
   "Request Pull Request from current branch to Base branch"
 );
+program.command(
+  "finish",
+  "Finish Task and checkout to base branch. This command is use to end Task life cycle"
+);
 
 // parsings
 program.showHelpAfterError();
