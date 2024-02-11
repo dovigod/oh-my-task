@@ -36,7 +36,6 @@ export async function create(
   if (options.current) {
     const branchList = git.getBranchList();
     const currentBranch = git.getCurrentBranchName();
-    console.log(branchList, currentBranch);
     const remoteOfCurrentBranch = branchList.find((remoteBranch) =>
       remoteBranch.includes(currentBranch)
     );
@@ -62,8 +61,6 @@ export async function create(
   const task = new Task(title, description, baseBranch);
   const taskKey = task.key;
 
-  await context.manifest.setHistory(taskKey, task.objectify());
-
   // --select checkout to new branch (branch name base on task title)
   if (options.select) {
     //@TODO feature , chore ,update ... selection
@@ -80,5 +77,7 @@ export async function create(
       }`
     );
   }
+  await context.manifest.setHistory(taskKey, task.objectify());
+
   return taskKey;
 }
