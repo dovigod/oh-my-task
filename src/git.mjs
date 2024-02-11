@@ -16,7 +16,7 @@ function git(
   }
 }
 
-export async function create(branch, baseBranch = "origin/develop") {
+export async function create(branch, baseBranch) {
   const createResult = git("branch", [branch, baseBranch], {
     stdio: ["inherit", process.stdout, process.stderr],
   });
