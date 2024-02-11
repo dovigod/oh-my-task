@@ -16,7 +16,7 @@ export async function pullRequest() {
     return;
   }
 
-  const notSyncedCommits = await git.notSyncedCommits();
+  const notSyncedCommits = await git.getUnSyncedCommits();
   if (notSyncedCommits.length > 0) {
     console.log(
       chalk.red("Not synced commits:"),
