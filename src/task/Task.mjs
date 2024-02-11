@@ -1,5 +1,6 @@
-import { TASK_STATUS } from "../status.mjs";
+import { TASK_STATUS, TASK_STATUS_TEXT } from "../status.mjs";
 import * as crypto from "../utils/crypto.mjs";
+import chalk from "chalk";
 export class Task {
   // state :: IDLE IN-PROGRESS COMPLETE
   key;
@@ -31,6 +32,23 @@ export class Task {
 
   setProgress(state) {
     return (this.#status = state);
+  }
+
+  select(state) {
+    const previousStateText = TASK_STATUS_TEXT[this.getProgress()];
+    const currentStateText = TASK_STATUS_TEXT[state];
+
+    console.log(`Switching to Task ${chalk.blueBright(this.key)}..`);
+
+    this.setProgress(state);
+
+    console.log(
+      `Task ${chalk.blueBright(
+        this.key
+      )} progress changed complete (${chalk.gray(
+        previousStateText
+      )} -> ${chalk.green(currentStateText)})`
+    );
   }
 
   // inverse of build

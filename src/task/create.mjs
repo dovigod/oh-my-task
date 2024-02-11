@@ -3,6 +3,8 @@ import * as context from "../context.mjs";
 import * as input from "../input.mjs";
 import * as git from "../git.mjs";
 import { Task } from "./Task.mjs";
+import { emoji } from "../markdown.mjs";
+import { TASK_STATUS } from "../status.mjs";
 
 export async function create(
   options = {
@@ -69,6 +71,14 @@ export async function create(
     await git.create(taskBranch, baseBranch);
     await git.checkout(taskBranch);
     await git.push(true);
+    task.select(TASK_STATUS.WORKING);
+
+    console.log(`Successfully Selected Task ${chalk.blueBright(taskKey)}`);
+    console.log(
+      `${emoji[TASK_STATUS.WORKING]} HAPPY CODING!! ${
+        emoji[TASK_STATUS.WORKING]
+      }`
+    );
   }
   return taskKey;
 }
