@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from "commander";
-import { sync } from "../src/sync.mjs";
+import { sync } from "../src/task/sync.mjs";
 
 async function SyncCommand() {
   const program = new Command();

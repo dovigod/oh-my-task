@@ -30,6 +30,7 @@ export async function sync() {
     };
   });
 
+  // check is supporting type? currently only md else consider as plain txt
   const syncToFileType = getSyncFileType(syncTo);
 
   const formatter = new Formatter(syncToFileType, heading, taskList);
