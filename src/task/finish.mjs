@@ -23,11 +23,19 @@ export async function finish() {
   const seperatorIdx = task.baseBranch.indexOf("/");
   const localBaseBranch = task.baseBranch.slice(seperatorIdx + 1);
 
-  const baseTask = Object.values(taskCollection).find(
+  let baseTask = Object.values(taskCollection).find(
     (task) => localBaseBranch === git.toBranchName(task.title)
   );
 
   if (baseTask) {
+    baseTask = Task.build(baseTask);
+    baseTask.select();
+
+    const branchToCheckout = git.toBranchName(baseTask.title);
+    await git.checkout(branchToCheckout);
+
+    await git.fetch();
+    await git.pull();
   } else {
     // probably, base task is original branch made by git or something which user manually created.
     // just set task status -> complete and let user to select which branch to move on.
