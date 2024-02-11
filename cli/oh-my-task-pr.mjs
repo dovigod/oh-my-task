@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
-import { pr } from "../src/task/pr.mjs";
+import { pullRequest } from "../src/task/pr.mjs";
 
 async function pullRequestCommand() {
   const program = new Command();
@@ -13,7 +13,7 @@ async function pullRequestCommand() {
 
   program.parse();
 
-  await pr();
+  await pullRequest();
 }
 
 await pullRequestCommand().catch((error) => console.error(error));

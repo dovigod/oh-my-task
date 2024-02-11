@@ -1,6 +1,5 @@
 import * as context from "../context.mjs";
 import * as git from "../git.mjs";
-import * as factory from "../factory.mjs";
 import chalk from "chalk";
 
 export async function pullRequest() {
