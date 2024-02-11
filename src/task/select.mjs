@@ -6,7 +6,11 @@ import { TASK_STATUS } from "../status.mjs";
 import chalk from "chalk";
 import { emoji } from "../markdown.mjs";
 
-export async function select() {
+export async function select(
+  options = {
+    current: false,
+  }
+) {
   const taskCollection = await context.manifest.getHistory();
 
   const tasks = Object.values(taskCollection).map((task) => {
@@ -20,8 +24,36 @@ export async function select() {
   );
 
   const taskBranch = git.toBranchName(selectedTask.title);
+  let baseBranch = selectedTask.baseBranch;
 
-  await git.create(taskBranch, selectedTask.baseBranch);
+  // set base branch to current branch
+  if (options.current) {
+    const branchList = git.getBranchList();
+    const currentBranch = git.getCurrentBranchName();
+    const remoteOfCurrentBranch = branchList.find((remoteBranch) =>
+      remoteBranch.includes(currentBranch)
+    );
+
+    if (!remoteOfCurrentBranch) {
+      console.warn(
+        `${chalk.yellow(
+          "Seems there isn't remote branch matching with current branch. Please check if current branch is pushed"
+        )}`
+      );
+      baseBranch = await git.selectBranch(
+        `${chalk.yellow("Fallback")}, Select Base Branch`,
+        true
+      );
+    }
+  }
+
+  if (!options.current && !baseBranch) {
+    baseBranch = await git.selectBranch(
+      `Seems current Task does't have baseBranch.\n Please Select Base branch:`,
+      true
+    );
+  }
+  await git.create(taskBranch, baseBranch);
   await git.checkout(taskBranch);
   await git.push(true);
   selectedTask.select(TASK_STATUS.WORKING);

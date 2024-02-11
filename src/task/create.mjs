@@ -36,7 +36,6 @@ export async function create(
   if (options.current) {
     const branchList = git.getBranchList();
     const currentBranch = git.getCurrentBranchName();
-    console.log(branchList, currentBranch);
     const remoteOfCurrentBranch = branchList.find((remoteBranch) =>
       remoteBranch.includes(currentBranch)
     );
