@@ -42,7 +42,7 @@ export async function pullRequest() {
     );
   }
 
-  // merge
+  //// merge
   await git.merge(baseBranch);
 
   // create pull request
