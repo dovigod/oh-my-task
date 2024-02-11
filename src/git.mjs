@@ -21,9 +21,9 @@ export async function create(branch, baseBranch = "origin/develop") {
     stdio: ["inherit", process.stdout, process.stderr],
   });
 
-  if (createResult.status !== 0) {
-    throw new Error("Failed to create branch");
-  }
+  // if (createResult.status !== 0) {
+  //   throw new Error("Failed to create branch");
+  // }
 
   return branch;
 }

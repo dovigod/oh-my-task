@@ -9,6 +9,7 @@
     "oh-my-task-create": "cli/oh-my-task-create.mjs",
     "oh-my-task-sync": "cli/oh-my-task-sync.mjs",
     "oh-my-task-list": "cli/oh-my-task-list.mjs",
+    "oh-my-task-select": "cli/oh-my-task-select.mjs",
     "omt-git": "cli/oh-my-task-git.mjs"
   },
   "scripts": {
@@ -18,6 +19,7 @@
     "omt-create": "node ./cli/oh-my-task-create.mjs",
     "omt-sync": "node ./cli/oh-my-task-sync.mjs",
     "omt-list": "node ./cli/oh-my-task-list.mjs",
+    "omt-select": "node ./cli/oh-my-task-select.mjs",
     "omt-git": "node ./cli/oh-my-task-git.mjs"
   },
   "keywords": [],
