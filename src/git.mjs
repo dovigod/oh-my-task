@@ -78,7 +78,7 @@ export async function fetch() {
 export async function merge(branch) {
   const mergeResult = git("merge", branch);
 
-  if (result.status !== 0) {
+  if (mergeResult.status !== 0) {
     throw new Error("Failed to merge");
   }
 }

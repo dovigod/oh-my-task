@@ -30,7 +30,7 @@ export async function pullRequest() {
   const currentBranchName = git.getCurrentBranchName();
 
   const task = Object.values(taskCollection).find(
-    (task) => task.title === currentBranchName
+    (task) => git.toBranchName(task.title) === currentBranchName
   );
 
   let baseBranch = task.baseBranch;
@@ -47,6 +47,4 @@ export async function pullRequest() {
 
   // create pull request
   await git.pullRequest(baseBranch, task.title);
-
-  await git.pullRequest(baseBranch, title);
 }
