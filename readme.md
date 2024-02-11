@@ -1,6 +1,20 @@
 # OH-MY-TASK
 
+## Introduction
+
+OH-MY-TASK is mainly focusing on helping indie developers to manage their projects neatly.
+It basically do things by unit called 'Task' and connects Task related actions with wrapped git commands.
+
+Goal is to let indie developers free from forgetting what to do, spliting tasks from large commits etc.
+
+**Note**
+It will force developers to manage there works( not Task ) with PR.
+
 ## Installation
+
+1. Download Github-cli (https://cli.github.com/)
+
+2. Install package globally
 
 ```
  npm i -g oh-my-task
@@ -8,13 +22,13 @@
 
 ## Initialize
 
-- 1. Create history file (Only once just after installing package globally)
+- Create history file (Only once just after installing package globally)
 
 ```
   omt init -g
 ```
 
-- 2. Create local project configuration
+- Create local project configuration
 
 ```
   omt init
@@ -72,4 +86,16 @@
 
 ```
   omt sync
+```
+
+#### Challenge 6 : Send PR
+
+```
+  omt pr
+```
+
+#### Challenge 6 : Finish Task
+
+```
+  omt finish
 ```
