@@ -149,3 +149,37 @@ export function toBranchName(title) {
   name = name.replaceAll(" ", "-");
   return name.toLowerCase();
 }
+
+export async function pullRequest(baseBrach, title) {
+  const seperatorIdx = baseBrach.indexOf("/");
+  const target = baseBrach.slice(seperatorIdx + 1);
+
+  const titleOptions = title ? ["--title", title] : [];
+  const result = spawnSync(
+    "gh",
+    ["pr", "create", "-w", "--base", target, ...titleOptions],
+    {
+      stdio: "inherit",
+    }
+  );
+  if (result.status !== 0) {
+    throw new Error("Failed to create PR");
+  }
+}
+
+export async function getUnStaged() {
+  const res = execSync(`git diff --name-only`, { encoding: "utf8" });
+  return res.split("\n").filter((file) => file !== "");
+}
+
+export async function getUnTracked() {
+  const res = execSync(`git ls-files . --others --exclude-standard`, {
+    encoding: "utf8",
+  });
+  return res.split("\n").filter((file) => file !== "");
+}
+
+export async function getUnSyncedCommits() {
+  const res = execSync(`git cherry -v`, { encoding: "utf8" });
+  return res.split("\n").filter((message) => message !== "");
+}

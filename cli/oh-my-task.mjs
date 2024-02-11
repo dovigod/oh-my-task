@@ -21,6 +21,10 @@ program.command("create", "Create Task To Do");
 program.command("list", "List up todos");
 program.command("sync", "Synchronize tasks from history.yaml to syncTo file");
 program.command("select", "Select task to work");
+program.command(
+  "pr",
+  "Request Pull Request from current branch to Base branch"
+);
 
 // parsings
 program.showHelpAfterError();
