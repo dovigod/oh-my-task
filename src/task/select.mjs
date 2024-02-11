@@ -25,6 +25,7 @@ export async function select(
 
   const taskBranch = git.toBranchName(selectedTask.title);
   let baseBranch = selectedTask.baseBranch;
+  console.log(selectedTask);
 
   // set base branch to current branch
   if (options.current) {
