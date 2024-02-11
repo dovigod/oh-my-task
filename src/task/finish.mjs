@@ -33,7 +33,6 @@ export async function finish() {
 
     const branchToCheckout = git.toBranchName(baseTask.title);
     await git.checkout(branchToCheckout);
-
     await git.fetch();
     await git.pull();
   } else {

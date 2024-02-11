@@ -12,7 +12,10 @@ function git(
   if (params instanceof Array) {
     return spawnSync("git", [command, ...params], options);
   } else {
-    return spawnSync("git", [command, params], options);
+    if (params) {
+      return spawnSync("git", [command, params], options);
+    }
+    return spawnSync("git", [command], options);
   }
 }
 
