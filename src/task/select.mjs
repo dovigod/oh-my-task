@@ -25,7 +25,6 @@ export async function select(
 
   const taskBranch = git.toBranchName(selectedTask.title);
   let baseBranch = selectedTask.baseBranch;
-  console.log(selectedTask);
 
   // set base branch to current branch
   if (options.current) {
@@ -58,6 +57,8 @@ export async function select(
   await git.checkout(taskBranch);
   await git.push(true);
   selectedTask.select(TASK_STATUS.WORKING);
+
+  await context.manifest.setHistory(selectedTask.key, selectedTask.objectify());
 
   console.log(
     `Successfully Selected Task ${chalk.blueBright(selectedTask.key)}`
