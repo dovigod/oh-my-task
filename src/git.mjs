@@ -68,7 +68,7 @@ export async function pull() {
 }
 
 export async function fetch() {
-  const result = git("fetch");
+  const result = git("fetch", "--prune");
 
   if (result.status !== 0) {
     throw new Error("Failed to fetch prune");

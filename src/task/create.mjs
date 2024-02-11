@@ -68,7 +68,7 @@ export async function create(
     await git.create(taskBranch, baseBranch);
     await git.checkout(taskBranch);
     await git.push(true);
-    task.select(TASK_STATUS.WORKING);
+    task.select();
 
     console.log(`Successfully Selected Task ${chalk.blueBright(taskKey)}`);
     console.log(

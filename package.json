@@ -1,7 +1,7 @@
 {
   "name": "oh-my-task",
   "version": "0.0.0",
-  "description": "OH-MY-TASK is mainly focused to help indie developers to manage their projects neatly",
+  "description": "OH-MY-TASK is mainly focusing helping indie developers to manage their projects neatly",
   "main": "cli/workflow.mjs",
   "bin": {
     "oh-my-task": "cli/oh-my-task.mjs",
@@ -11,6 +11,7 @@
     "oh-my-task-list": "cli/oh-my-task-list.mjs",
     "oh-my-task-select": "cli/oh-my-task-select.mjs",
     "oh-my-task-pr": "cli/oh-my-task-pr.mjs",
+    "oh-my-task-finish": "cli/oh-my-task-finish.mjs",
     "omt-git": "cli/oh-my-task-git.mjs"
   },
   "scripts": {
@@ -22,6 +23,7 @@
     "omt-list": "node ./cli/oh-my-task-list.mjs",
     "omt-select": "node ./cli/oh-my-task-select.mjs",
     "omt-pr": "node ./cli/oh-my-task-pr.mjs",
+    "omt-finish": "node ./cli/oh-my-task-finish.mjs",
     "omt-git": "node ./cli/oh-my-task-git.mjs"
   },
   "keywords": [],

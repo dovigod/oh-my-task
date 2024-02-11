@@ -34,13 +34,28 @@ export class Task {
     return (this.#status = state);
   }
 
-  select(state) {
+  finish() {
     const previousStateText = TASK_STATUS_TEXT[this.getProgress()];
-    const currentStateText = TASK_STATUS_TEXT[state];
+    const currentStateText = TASK_STATUS_TEXT[TASK_STATUS.COMPLETE];
+
+    this.setProgress(TASK_STATUS.WORKING);
+
+    console.log(
+      `Task ${chalk.blueBright(
+        this.key
+      )} progress changed complete (${chalk.gray(
+        previousStateText
+      )} -> ${chalk.green(currentStateText)})`
+    );
+  }
+
+  select() {
+    const previousStateText = TASK_STATUS_TEXT[this.getProgress()];
+    const currentStateText = TASK_STATUS_TEXT[TASK_STATUS.WORKING];
 
     console.log(`Switching to Task ${chalk.blueBright(this.key)}..`);
 
-    this.setProgress(state);
+    this.setProgress(TASK_STATUS.WORKING);
 
     console.log(
       `Task ${chalk.blueBright(
