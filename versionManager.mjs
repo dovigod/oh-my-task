@@ -30,10 +30,13 @@ function update(version, semverType) {
   switch (semverType) {
     case "major": {
       major = Number(major) + 1;
+      minor = 0;
+      patch = 0;
       break;
     }
     case "minor": {
       minor = Number(minor) + 1;
+      patch = 0;
       break;
     }
     case "patch": {
