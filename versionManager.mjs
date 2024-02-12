@@ -27,11 +27,11 @@ async function run(semverType = "patch") {
   version = update(version, semverType);
   PACKAGE.version = version;
   fs.writeFile("./package.json", JSON.stringify(PACKAGE, null, 2));
-  execSync(`git add .`);
-  execSync(`git commit -m "v${version}"`);
-  execSync(`git push`);
-  execSync(`git tag -a v${version} -m "${version}"`);
-  execSync(`git push --follow-tags`);
+  execSync(`git add .`, { stdio: "inherit" });
+  execSync(`git commit -m "v${version}"`, { stdio: "inherit" });
+  execSync(`git push`, { stdio: "inherit" });
+  execSync(`git tag -a v${version} -m "${version}"`, { stdio: "inherit" });
+  execSync(`git push --follow-tags`, { stdio: "inherit" });
 }
 
 run();
