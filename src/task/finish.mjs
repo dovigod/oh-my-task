@@ -42,6 +42,8 @@ export async function finish() {
       "Select Branch to checkout:",
       false
     );
+    await git.fetch();
+    await git.pull();
     await git.checkout(branchToCheckout);
     return;
   }

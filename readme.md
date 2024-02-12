@@ -176,4 +176,7 @@ It will force developers to manage there works( not Task ) with PR.
   
 
 - 💻 __<U>Invoke Sync before pr</U>__
-  > Sync should be invoked to prevent duplicate pushes<!-->End of Placeholder of OH-MY-TASK<-->
+  > Sync should be invoked to prevent duplicate pushes
+
+- 💻 __<U>fetch and pull after checkout on finish command</U>__
+  <!-->End of Placeholder of OH-MY-TASK<-->
