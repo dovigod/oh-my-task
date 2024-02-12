@@ -1,0 +1,39 @@
+{
+  "name": "oh-my-task",
+  "version": "0.0.10",
+  "description": "OH-MY-TASK is mainly focused on helping indie developers to manage their projects neatly.",
+  "main": "cli/oh-my-task.mjs",
+  "bin": {
+    "omt": "cli/oh-my-task.mjs",
+    "omt-init": "cli/oh-my-task-init.mjs",
+    "omt-create": "cli/oh-my-task-create.mjs",
+    "omt-sync": "cli/oh-my-task-sync.mjs",
+    "omt-list": "cli/oh-my-task-list.mjs",
+    "omt-select": "cli/oh-my-task-select.mjs",
+    "omt-pr": "cli/oh-my-task-pr.mjs",
+    "omt-finish": "cli/oh-my-task-finish.mjs"
+  },
+  "scripts": {
+    "postversion": "git push --follow-tags",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "omt": "node ./cli/oh-my-task.mjs",
+    "omt-init": "node ./cli/oh-my-task-init.mjs",
+    "omt-create": "node ./cli/oh-my-task-create.mjs",
+    "omt-sync": "node ./cli/oh-my-task-sync.mjs",
+    "omt-list": "node ./cli/oh-my-task-list.mjs",
+    "omt-select": "node ./cli/oh-my-task-select.mjs",
+    "omt-pr": "node ./cli/oh-my-task-pr.mjs",
+    "omt-finish": "node ./cli/oh-my-task-finish.mjs",
+    "omt-git": "node ./cli/oh-my-task-git.mjs"
+  },
+  "keywords": [],
+  "author": "Dovigod",
+  "license": "ISC",
+  "dependencies": {
+    "@inquirer/prompts": "^3.3.2",
+    "chalk": "^5.3.0",
+    "commander": "^12.0.0",
+    "path": "^0.12.7",
+    "yaml": "^2.3.4"
+  }
+}

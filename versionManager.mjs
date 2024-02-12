@@ -27,7 +27,7 @@ async function run(semverType = "patch") {
   version = update(version, semverType);
   PACKAGE.version = version;
   console.log(PACKAGE);
-  fs.writeFile("./package.json", JSON.stringify(PACKAGE, null, 2));
+  await fs.writeFile("./package.json", JSON.stringify(PACKAGE, null, 2));
   execSync(`git add .`, { stdio: "inherit" });
   execSync(`git commit -m "v${version}"`, { stdio: "inherit" });
   execSync(`git push`, { stdio: "inherit" });
