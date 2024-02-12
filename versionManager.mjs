@@ -2,6 +2,28 @@ import { execSync } from "child_process";
 import * as fs from "fs/promises";
 import PACKAGE from "./package.json" assert { type: "json" };
 
+function getCommandArgs() {
+  const args = {};
+  process.argv.slice(2, process.argv.length).forEach((arg) => {
+    // --foo-bar
+    if (arg.slice(0, 2) === "--") {
+      const longArg = arg.split("=");
+      const longArgFlag = longArg[0].slice(2, longArg[0].length);
+      const longArgValue = longArg.length > 1 ? longArg[1] : true;
+      args[longArgFlag] = longArgValue;
+    }
+    // -foo
+    else if (arg[0] === "-") {
+      const flags = arg.slice(1, arg.length).split("");
+      flags.forEach((flag) => {
+        args[flag] = true;
+      });
+    }
+  });
+
+  return args;
+}
+
 function update(version, semverType) {
   let [major, minor, patch] = version.split(".");
 
@@ -22,11 +44,20 @@ function update(version, semverType) {
 
   return [major, minor, patch].join(".");
 }
-async function run(semverType = "patch") {
+async function run() {
+  let { major, minor } = getCommandArgs();
+  let target = "patch";
+
+  if (major) {
+    target = "major";
+  }
+  if (minor) {
+    target = "minor";
+  }
+
   let version = PACKAGE.version;
-  version = update(version, semverType);
+  version = update(version, target);
   PACKAGE.version = version;
-  console.log(PACKAGE);
   await fs.writeFile("./package.json", JSON.stringify(PACKAGE, null, 2));
   execSync(`git add .`, { stdio: "inherit" });
   execSync(`git commit -m "v${version}"`, { stdio: "inherit" });
