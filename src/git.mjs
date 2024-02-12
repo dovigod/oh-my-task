@@ -186,3 +186,22 @@ export async function getUnSyncedCommits() {
   const res = execSync(`git cherry -v`, { encoding: "utf8" });
   return res.split("\n").filter((message) => message !== "");
 }
+
+export function getPreviousCommitMessage() {
+  const res = execSync("git log -1 --pretty=%B", { encoding: "utf-8" });
+  return res.trim();
+}
+
+/**
+ * Dangerous series
+ * **NOTE** Please becareful when using below series of function.
+ * By using those in wrong way, might blow up users git history.
+ * So, Make sure to think over before using those.
+ */
+export async function dangerouslyResetToPreviousHead() {
+  execSync("git reset --hard HEAD~1");
+}
+
+export async function dangerouslyPush() {
+  execSync("git push -f");
+}
