@@ -40,6 +40,23 @@ export async function checkout(branch) {
   return branch;
 }
 
+export async function add(files = ".") {
+  files = files instanceof Array ? files.join(" ") : files;
+
+  const addResult = git("add", files);
+
+  if (addResult.status !== 0) {
+    throw new Error("Failed to add");
+  }
+}
+export async function commit(message) {
+  const commitResult = git("commit", ["-m", message]);
+
+  if (commitResult.status !== 0) {
+    throw new Error("Failed to add");
+  }
+}
+
 export async function push(withSettingCurrentBranchUpStream = false) {
   let pushResult;
 
@@ -185,4 +202,23 @@ export async function getUnTracked() {
 export async function getUnSyncedCommits() {
   const res = execSync(`git cherry -v`, { encoding: "utf8" });
   return res.split("\n").filter((message) => message !== "");
+}
+
+export function getPreviousCommitMessage() {
+  const res = execSync("git log -1 --pretty=%B", { encoding: "utf-8" });
+  return res.trim();
+}
+
+/**
+ * Dangerous series
+ * **NOTE** Please becareful when using below series of function.
+ * By using those in wrong way, might blow up users git history.
+ * So, Make sure to think over before using those.
+ */
+export async function dangerouslyResetToPreviousHead() {
+  execSync("git reset --soft HEAD~1");
+}
+
+export async function dangerouslyPush() {
+  execSync("git push -f");
 }
