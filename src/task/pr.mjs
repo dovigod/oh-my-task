@@ -1,5 +1,6 @@
 import * as context from "../context.mjs";
 import * as git from "../git.mjs";
+import { sync } from "./sync.mjs";
 import chalk from "chalk";
 
 export async function pullRequest() {
@@ -25,6 +26,15 @@ export async function pullRequest() {
     console.log("\t%s", notSyncedCommits.join("\n\t"));
     return;
   }
+
+  // all git process are ready.
+  // now just update README.md and inject to previous commit & push force
+  // sync readme
+  await sync();
+  // reset to HEAD ~ 1
+  // add . ( existing works + readme)
+  // commit msg ( use previous message )
+  // push force
 
   let taskCollection = await context.manifest.getHistory();
   const currentBranchName = git.getCurrentBranchName();
