@@ -1,4 +1,5 @@
 # OH-MY-TASK
+<img width="958" alt="스크린샷 2024-02-12 오후 4 06 47" src="https://github.com/dovigod/oh-my-task/assets/30416914/cf8403da-0db2-43ae-bdb4-646413128f1b">
 
 ## Introduction
 
@@ -12,12 +13,15 @@ It will force developers to manage there works( not Task ) with PR.
 
 ## Major Command Flows
 
-```
+
 [Select Command](https://github.com/dovigod/oh-my-task/wiki/Select-command-flow-chart)
+
 [Create Command](https://github.com/dovigod/oh-my-task/wiki/Create-Command-Flow-chart)
+
 [PR Command](https://github.com/dovigod/oh-my-task/wiki/PR-command-flow-chart)
+
 [Finish Command](https://github.com/dovigod/oh-my-task/wiki/Finish-command-flow-chart)
-```
+
 
 ## Installation
 
@@ -103,7 +107,7 @@ It will force developers to manage there works( not Task ) with PR.
   omt pr
 ```
 
-#### Challenge 6 : Finish Task
+#### Challenge 7 : Finish Task
 
 ```
   omt finish
