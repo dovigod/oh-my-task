@@ -47,7 +47,7 @@ It will force developers to manage there works( not Task ) with PR.
   omt init
 ```
 
-## Useage
+## Usage
 
 #### Challenge 1 : General task life cycle
 
