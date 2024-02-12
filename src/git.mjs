@@ -40,6 +40,23 @@ export async function checkout(branch) {
   return branch;
 }
 
+export async function add(files = ".") {
+  files = files instanceof Array ? files.join(" ") : files;
+
+  const addResult = git("add", files);
+
+  if (addResult.status !== 0) {
+    throw new Error("Failed to add");
+  }
+}
+export async function commit(message) {
+  const commitResult = git("commit", ["-m", message]);
+
+  if (commitResult.status !== 0) {
+    throw new Error("Failed to add");
+  }
+}
+
 export async function push(withSettingCurrentBranchUpStream = false) {
   let pushResult;
 
@@ -199,7 +216,7 @@ export function getPreviousCommitMessage() {
  * So, Make sure to think over before using those.
  */
 export async function dangerouslyResetToPreviousHead() {
-  execSync("git reset --hard HEAD~1");
+  execSync("git reset --soft HEAD~1");
 }
 
 export async function dangerouslyPush() {

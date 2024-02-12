@@ -29,17 +29,22 @@ export async function pullRequest() {
 
   // all git process are ready.
   // now just update README.md and inject to previous commit & push force
-  // sync readme
-  await sync();
+
   // get previous commit message
   const commitMessage = git.getPreviousCommitMessage();
   // reset to HEAD ~ 1
-  // git.dangerouslyResetToPreviousHead();
-  // add . ( existing works + readme)
-  // commit msg ( use previous message )
-  // push force
+  await git.dangerouslyResetToPreviousHead();
 
-  //hello reset me
+  // sync readme
+  await sync();
+  // add . ( existing works + readme)
+  await git.add();
+  // commit msg ( use previous message )
+  await git.commit(commitMessage);
+  // push force
+  await git.dangerouslyPush();
+
+  // hello reset me haha
   return;
   let taskCollection = await context.manifest.getHistory();
   const currentBranchName = git.getCurrentBranchName();
