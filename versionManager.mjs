@@ -30,6 +30,8 @@ async function run(semverType = "patch") {
   execSync(`git add .`);
   execSync(`git commit -m "v${version}"`);
   execSync(`git push`);
+  execSync(`git tag -a v${version} -m "${version}"`);
+  execSync(`git push --follow-tags`);
 }
 
 run();
