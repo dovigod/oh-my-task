@@ -58,7 +58,7 @@
     {
       "type": "ci",
       "section": "CI",
-      "hidden": false
+      "hidden": true
     }
   ]
 }
