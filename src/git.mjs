@@ -120,6 +120,12 @@ export function getCurrentBranchName() {
   return output.trim();
 }
 
+export function getCurrentBranchRemoteName() {
+  const command = `git for-each-ref --format='%(upstream:short)' "$(git symbolic-ref -q HEAD)"`;
+  const res = execSync(command, { encoding: "utf-8" });
+  return res.trim();
+}
+
 export async function selectBranch(message = "Select Branch", remote = true) {
   const command = remote
     ? "git branch -r"
@@ -207,6 +213,12 @@ export async function getUnSyncedCommits() {
 export function getPreviousCommitMessage() {
   const res = execSync("git log -1 --pretty=%B", { encoding: "utf-8" });
   return res.trim();
+}
+
+export async function discardRemoteBranch(remoteBranch) {
+  const command = `git push -d origin ${remoteBranch}`;
+  const res = execSync(command);
+  return;
 }
 
 /**

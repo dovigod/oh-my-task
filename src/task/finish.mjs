@@ -31,11 +31,14 @@ export async function finish() {
     baseTask = Task.build(baseTask);
     baseTask.select();
 
+    const remoteBranchToDiscard = git.getCurrentBranchRemoteName();
     const branchToCheckout = git.toBranchName(baseTask.title);
     await git.checkout(branchToCheckout);
     await git.fetch();
     await git.pull();
+    await git.discardRemoteBranch(remoteBranchToDiscard);
   } else {
+    const remoteBranchToDiscard = git.getCurrentBranchRemoteName();
     // probably, base task is original branch made by git or something which user manually created.
     // just set task status -> complete and let user to select which branch to move on.
     const branchToCheckout = await git.selectBranch(
@@ -45,6 +48,7 @@ export async function finish() {
     await git.checkout(branchToCheckout);
     await git.fetch();
     await git.pull();
+    await git.discardRemoteBranch(remoteBranchToDiscard);
     return;
   }
 }
