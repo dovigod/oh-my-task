@@ -3,7 +3,7 @@ import * as git from "../git.mjs";
 import { sync } from "./sync.mjs";
 import chalk from "chalk";
 
-export async function pullRequest() {
+export async function pullRequest(options = { sync: false }) {
   const notStagedList = await git.getUnStaged();
   const unTrackedList = await git.getUnTracked();
   if (notStagedList.length > 0 || unTrackedList.length > 0) {
@@ -27,24 +27,26 @@ export async function pullRequest() {
     return;
   }
 
-  // all git process are ready.
-  // now just update README.md and inject to previous commit & push force
+  // -s , --sync
+  if (options.sync) {
+    // all git process are ready.
+    // now just update README.md and inject to previous commit & push force
 
-  // get previous commit message
-  const commitMessage = git.getPreviousCommitMessage();
-  // reset to HEAD ~ 1
-  await git.dangerouslyResetToPreviousHead();
+    // get previous commit message
+    const commitMessage = git.getPreviousCommitMessage();
+    // reset to HEAD ~ 1
+    await git.dangerouslyResetToPreviousHead();
 
-  // sync readme
-  await sync();
-  // add . ( existing works + readme)
-  await git.add();
-  // commit msg ( use previous message )
-  await git.commit(commitMessage);
-  // push force
-  await git.dangerouslyPush();
+    // sync readme
+    await sync();
+    // add . ( existing works + readme)
+    await git.add();
+    // commit msg ( use previous message )
+    await git.commit(commitMessage);
+    // push force
+    await git.dangerouslyPush();
+  }
 
-  // hello reset me haha
   let taskCollection = await context.manifest.getHistory();
   const currentBranchName = git.getCurrentBranchName();
 
