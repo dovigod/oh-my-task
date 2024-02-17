@@ -9,19 +9,13 @@ All notable changes to this project will be documented in this file. See [standa
 
 * v1 ([91bd5ce](https://github.com/dovigod/workflow-cli/commit/91bd5ced1df79cccbcf573dccb785f224a20dc55))
 
-### [0.1.5](https://github.com/dovigod/workflow-cli/compare/v0.1.4...v0.1.5) (2024-02-17)
-
-
-### Features
-
-* v0.1.4 should be v0.2.0 ([e29cd80](https://github.com/dovigod/workflow-cli/commit/e29cd8024f0f4b96d223f5201654cb9953a7f091))
-
-### [0.1.4](https://github.com/dovigod/workflow-cli/compare/v0.1.3...v0.1.4) (2024-02-17)
+### [0.1.4](https://github.com/dovigod/workflow-cli/compare/v0.1.4) (2024-02-17)
 
 ### Feature Improvements
 
 - fuzzy search on select interaction ([#26](https://github.com/dovigod/workflow-cli/issues/26)) ([b6eb012](https://github.com/dovigod/workflow-cli/commit/b6eb0121b505f909a71c6c08837a3607f5c48848))
 - sync optional when pr ([#28](https://github.com/dovigod/workflow-cli/issues/28)) ([b613e98](https://github.com/dovigod/workflow-cli/commit/b613e98c0437e984fa85301252a89ee598d2b6b3))
+- Remote branch will be deleted when `pr` is successfully called ([#27](https://github.com/dovigod/workflow-cli/issues/27)) ([b6eb012](https://github.com/dovigod/oh-my-task/commit/5d2a075e61884f3b43e33a7a3fd0e1f8eeade142))
 
 ### [0.1.3](https://github.com/dovigod/workflow-cli/compare/v0.1.0...v0.1.3) (2024-02-17)
 
