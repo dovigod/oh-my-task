@@ -17,10 +17,9 @@ async function runner() {
     .description(PACKAGE.description)
     .version(PACKAGE.version);
 
-  if (!program.args.length) {
+  if (process.argv.length === 1) {
     art.printASCIIArt();
   }
-
   await version.checkUpdate();
 
   // commands
