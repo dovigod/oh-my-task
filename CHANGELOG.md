@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/dovigod/workflow-cli/compare/v0.1.5...v1.1.0) (2024-02-17)
+
+
+### Features
+
+* v1 ([91bd5ce](https://github.com/dovigod/workflow-cli/commit/91bd5ced1df79cccbcf573dccb785f224a20dc55))
+
 ### [0.1.5](https://github.com/dovigod/workflow-cli/compare/v0.1.4...v0.1.5) (2024-02-17)
 
 

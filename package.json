@@ -1,6 +1,6 @@
 {
   "name": "oh-my-task",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "OH-MY-TASK is mainly focused on helping indie developers to manage their projects neatly.",
   "main": "cli/oh-my-task.mjs",
   "bin": {
