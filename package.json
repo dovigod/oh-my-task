@@ -26,7 +26,16 @@
     "omt-finish": "node ./cli/oh-my-task-finish.mjs",
     "omt-git": "node ./cli/oh-my-task-git.mjs"
   },
-  "keywords": [],
+  "keywords": [
+    "oh-my-task",
+    "task",
+    "task management",
+    "task management cli",
+    "cli",
+    "task cli",
+    "git",
+    "git cli"
+  ],
   "author": "Dovigod",
   "license": "ISC",
   "dependencies": {
