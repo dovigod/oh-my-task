@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/dovigod/workflow-cli/compare/v0.1.3...v0.1.4) (2024-02-17)
+
+
+### Feature Improvements
+
+* fuzzy search on select interaction ([#26](https://github.com/dovigod/workflow-cli/issues/26)) ([b6eb012](https://github.com/dovigod/workflow-cli/commit/b6eb0121b505f909a71c6c08837a3607f5c48848))
+* sync optional when pr ([#28](https://github.com/dovigod/workflow-cli/issues/28)) ([b613e98](https://github.com/dovigod/workflow-cli/commit/b613e98c0437e984fa85301252a89ee598d2b6b3))
+
 ### [0.1.3](https://github.com/dovigod/workflow-cli/compare/v0.1.0...v0.1.3) (2024-02-17)
 
 
