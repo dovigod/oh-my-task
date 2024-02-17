@@ -17,8 +17,7 @@ async function runner() {
     .description(PACKAGE.description)
     .version(PACKAGE.version);
 
-  console.log(process.argv);
-  if (process.argv.length === 1) {
+  if (process.argv.length <= 2) {
     art.printASCIIArt();
   }
   await version.checkUpdate();
