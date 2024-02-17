@@ -3,7 +3,7 @@
     {
       "type": "chore",
       "section": "Others",
-      "hidden": false
+      "hidden": true
     },
     {
       "type": "revert",

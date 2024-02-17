@@ -14,10 +14,7 @@
     "omt-finish": "cli/oh-my-task-finish.mjs"
   },
   "scripts": {
-    "release": "standard-version",
-    "pub": "node ./versionManager.mjs",
-    "pub:major": "node ./versionManager.mjs --major",
-    "pub:minor": "node ./versionManager.mjs --minor",
+    "release": "node ./release.mjs",
     "test": "echo \"Error: no test specified\" && exit 1",
     "omt": "node ./cli/oh-my-task.mjs",
     "omt-init": "node ./cli/oh-my-task-init.mjs",
