@@ -11,7 +11,9 @@ async function test() {
 
   const options = program.opts();
 
-  await git.selectBranch("Select Branch ::", true);
+  // await git.selectBranch("Select Branch ::", true);
+  const rm = git.getCurrentBranchRemoteName();
+  await git.discardRemoteBranch(rm);
 }
 
 await test().catch((error) => console.error(error));

@@ -216,7 +216,11 @@ export function getPreviousCommitMessage() {
 }
 
 export async function discardRemoteBranch(remoteBranch) {
-  const command = `git push -d origin ${remoteBranch}`;
+  const seperatorIdx = remoteBranch.indexOf("/");
+  const remoteAlias = remoteBranch.slice(0, seperatorIdx);
+  const branch = remoteBranch.slice(seperatorIdx + 1);
+
+  const command = `git push -d ${remoteAlias} ${branch}`;
   const res = execSync(command);
   return;
 }
