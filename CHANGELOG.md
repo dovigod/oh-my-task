@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/dovigod/workflow-cli/compare/v1.2.0...v1.2.1) (2024-02-17)
+
+
+### Bug Fixes
+
+* ascii logo still gets printed ([a49e7d1](https://github.com/dovigod/workflow-cli/commit/a49e7d189552c7810baffe70ebd869f1ed1e85be))
+
 ## [1.2.0](https://github.com/dovigod/workflow-cli/compare/v1.1.1...v1.2.0) (2024-02-17)
 
 
