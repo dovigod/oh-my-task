@@ -11,40 +11,40 @@ const PACKAGE = JSON.parse(
 async function runner() {
   const program = new Command();
 
-  console.log(`
-  ${chalk.redBright(` ██████  ██   ██`)}     ${chalk.greenBright(
-    `███    ███ ██    ██`
-  )}     ${chalk.blueBright(`████████  █████  ███████ ██   ██`)}   ${chalk.cyan(
-    `██`
-  )}\n
-  ${chalk.redBright(`██    ██ ██   ██`)}     ${chalk.greenBright(
-    `████  ████  ██  ██`
-  )}      ${chalk.blueBright(
-    `   ██    ██   ██ ██      ██  ██`
-  )}    ${chalk.cyan(`██`)}\n
-  ${chalk.redBright(`██    ██ ███████`)}     ${chalk.greenBright(
-    `██ ████ ██   ████`
-  )}       ${chalk.blueBright(
-    `   ██    ███████ ███████ █████`
-  )}     ${chalk.cyan(`██`)}\n
-  ${chalk.redBright(`██    ██ ██   ██`)}     ${chalk.greenBright(
-    `██  ██  ██    ██`
-  )}        ${chalk.blueBright(
-    `   ██    ██   ██      ██ ██  ██`
-  )}    ${chalk.cyan(``)}\n
-  ${chalk.redBright(` ██████  ██   ██`)}     ${chalk.greenBright(
-    `██      ██    ██`
-  )}        ${chalk.blueBright(
-    `   ██    ██   ██ ███████ ██   ██`
-  )}   ${chalk.cyan(`██`)}\n`);
-
   program
     .name(PACKAGE.name)
     .description(PACKAGE.description)
     .version(PACKAGE.version);
 
+  if (!program.args.length) {
+    console.log(`
+        ${chalk.redBright(` ██████  ██   ██`)}     ${chalk.greenBright(
+      `███    ███ ██    ██`
+    )}     ${chalk.blueBright(
+      `████████  █████  ███████ ██   ██`
+    )}   ${chalk.cyan(`██`)}\n
+        ${chalk.redBright(`██    ██ ██   ██`)}     ${chalk.greenBright(
+      `████  ████  ██  ██`
+    )}      ${chalk.blueBright(
+      `   ██    ██   ██ ██      ██  ██`
+    )}    ${chalk.cyan(`██`)}\n
+        ${chalk.redBright(`██    ██ ███████`)}     ${chalk.greenBright(
+      `██ ████ ██   ████`
+    )}       ${chalk.blueBright(
+      `   ██    ███████ ███████ █████`
+    )}     ${chalk.cyan(`██`)}\n
+        ${chalk.redBright(`██    ██ ██   ██`)}     ${chalk.greenBright(
+      `██  ██  ██    ██`
+    )}        ${chalk.blueBright(
+      `   ██    ██   ██      ██ ██  ██`
+    )}    ${chalk.cyan(``)}\n
+        ${chalk.redBright(` ██████  ██   ██`)}     ${chalk.greenBright(
+      `██      ██    ██`
+    )}        ${chalk.blueBright(
+      `   ██    ██   ██ ███████ ██   ██`
+    )}   ${chalk.cyan(`██`)}\n`);
+  }
   // commands
-
   program.command("init", "Initialize settings");
   program.command("create", "Create Task To Do");
   program.command("list", "List up todos");
@@ -65,3 +65,9 @@ async function runner() {
 }
 
 await runner().catch((e) => {});
+
+function humanReadableArgName(arg) {
+  const nameOutput = arg.name() + (arg.variadic === true ? "..." : "");
+
+  return arg.required ? "<" + nameOutput + ">" : "[" + nameOutput + "]";
+}
