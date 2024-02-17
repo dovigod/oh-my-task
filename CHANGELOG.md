@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/dovigod/workflow-cli/compare/v1.1.1...v1.2.0) (2024-02-17)
+
+
+### Features
+
+* Add version update notificator ([#31](https://github.com/dovigod/workflow-cli/issues/31)) ([32f92bc](https://github.com/dovigod/workflow-cli/commit/32f92bc25547e4ae7dcf46cfa5d42139b95fd779))
+
+
+### Styling
+
+* log oh-my-task logo only when user enters empty command ([#30](https://github.com/dovigod/workflow-cli/issues/30)) ([3c4488d](https://github.com/dovigod/workflow-cli/commit/3c4488d8ed1b6f4c32d6d8f316e6bfa3a7289e52))
+
 ### [1.1.1](https://github.com/dovigod/workflow-cli/compare/v1.1.0...v1.1.1) (2024-02-17)
 
 ## [1.1.0](https://github.com/dovigod/workflow-cli/compare/v0.1.5...v1.1.0) (2024-02-17)
