@@ -2,7 +2,8 @@
 
 import { Command } from "commander";
 import { readFileSync } from "fs";
-import chalk from "chalk";
+import * as art from "../src/addons/art.mjs";
+import * as version from "../src/addons/version.mjs";
 
 const PACKAGE = JSON.parse(
   readFileSync(new URL("../package.json", import.meta.url), "utf-8")
@@ -17,33 +18,11 @@ async function runner() {
     .version(PACKAGE.version);
 
   if (!program.args.length) {
-    console.log(`
-        ${chalk.redBright(` ██████  ██   ██`)}     ${chalk.greenBright(
-      `███    ███ ██    ██`
-    )}     ${chalk.blueBright(
-      `████████  █████  ███████ ██   ██`
-    )}   ${chalk.cyan(`██`)}\n
-        ${chalk.redBright(`██    ██ ██   ██`)}     ${chalk.greenBright(
-      `████  ████  ██  ██`
-    )}      ${chalk.blueBright(
-      `   ██    ██   ██ ██      ██  ██`
-    )}    ${chalk.cyan(`██`)}\n
-        ${chalk.redBright(`██    ██ ███████`)}     ${chalk.greenBright(
-      `██ ████ ██   ████`
-    )}       ${chalk.blueBright(
-      `   ██    ███████ ███████ █████`
-    )}     ${chalk.cyan(`██`)}\n
-        ${chalk.redBright(`██    ██ ██   ██`)}     ${chalk.greenBright(
-      `██  ██  ██    ██`
-    )}        ${chalk.blueBright(
-      `   ██    ██   ██      ██ ██  ██`
-    )}    ${chalk.cyan(``)}\n
-        ${chalk.redBright(` ██████  ██   ██`)}     ${chalk.greenBright(
-      `██      ██    ██`
-    )}        ${chalk.blueBright(
-      `   ██    ██   ██ ███████ ██   ██`
-    )}   ${chalk.cyan(`██`)}\n`);
+    art.printASCIIArt();
   }
+
+  await version.checkUpdate();
+
   // commands
   program.command("init", "Initialize settings");
   program.command("create", "Create Task To Do");
@@ -65,9 +44,3 @@ async function runner() {
 }
 
 await runner().catch((e) => {});
-
-function humanReadableArgName(arg) {
-  const nameOutput = arg.name() + (arg.variadic === true ? "..." : "");
-
-  return arg.required ? "<" + nameOutput + ">" : "[" + nameOutput + "]";
-}
