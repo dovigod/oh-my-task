@@ -120,7 +120,7 @@ export class Manifest {
     fileToSync = await input.select(
       "Select File where to Record(Sync): ",
       files,
-      fileToSync
+      ["key", "name", "value"]
     );
     heading = await input.enterText("Enter heading of task list: ", heading);
 
