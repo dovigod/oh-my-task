@@ -1,6 +1,6 @@
 {
   "name": "oh-my-task",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "OH-MY-TASK is mainly focused on helping indie developers to manage their projects neatly.",
   "main": "cli/oh-my-task.mjs",
   "bin": {
@@ -14,6 +14,7 @@
     "omt-finish": "cli/oh-my-task-finish.mjs"
   },
   "scripts": {
+    "release": "standard-version",
     "pub": "node ./versionManager.mjs",
     "pub:major": "node ./versionManager.mjs --major",
     "pub:minor": "node ./versionManager.mjs --minor",
