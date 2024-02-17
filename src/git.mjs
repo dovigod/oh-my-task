@@ -136,8 +136,8 @@ export async function selectBranch(message = "Select Branch", remote = true) {
 
   return input.select(
     message,
-    branches.map((branch) => ({ value: branch })),
-    ["value"]
+    branches.map((branch) => ({ value: branch, name: branch })),
+    ["value", "name"]
   );
 }
 

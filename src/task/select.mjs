@@ -17,11 +17,10 @@ export async function select(
     return { value: Task.build(task), name: task.title };
   });
 
-  const selectedTask = await input.select(
-    "Select Task to work :",
-    tasks,
-    "123"
-  );
+  const selectedTask = await input.select("Select Task to work :", tasks, [
+    "value",
+    "name",
+  ]);
 
   const taskBranch = git.toBranchName(selectedTask.title);
   let baseBranch = selectedTask.baseBranch;
