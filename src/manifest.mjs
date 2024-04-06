@@ -196,6 +196,40 @@ export class Manifest {
     return fs.writeFile(this.historyPath, stringify(historyCollection));
   }
 
+  async deleteHistory(taskKey) {
+    const fileContent = await fs
+      .readFile(this.historyPath, "utf8")
+      .catch((e) => "");
+
+    const historyCollection = parse(fileContent) ?? {};
+    const { project } = await this.getConfig();
+
+    if (!historyCollection[project.key]) {
+      historyCollection[project.key] = {};
+    }
+
+    if (historyCollection[project.key][taskKey]) {
+      delete historyCollection[project.key][taskKey];
+    }
+    return fs.writeFile(this.historyPath, stringify(historyCollection));
+  }
+
+  async overwriteHistroy(value) {
+    const fileContent = await fs
+      .readFile(this.historyPath, "utf8")
+      .catch((e) => "");
+
+    const historyCollection = parse(fileContent) ?? {};
+    const { project } = await this.getConfig();
+
+    if (!historyCollection[project.key]) {
+      historyCollection[project.key] = {};
+    }
+
+    historyCollection[project.key] = value;
+    return fs.writeFile(this.historyPath, stringify(historyCollection));
+  }
+
   /**
    * Initialize project history (history.yaml).
    * This method is only used for initializing project.
