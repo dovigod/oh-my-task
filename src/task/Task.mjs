@@ -53,14 +53,18 @@ export class Task {
     const previousStateText = TASK_STATUS_TEXT[this.getProgress()];
     const currentStateText = TASK_STATUS_TEXT[TASK_STATUS.WORKING];
 
-    console.log(`Switching to Task ${chalk.blueBright(this.key)}..`);
+    console.log(
+      `Switching to Task ${chalk.gray(this.title)}(${chalk.blueBright(
+        this.key
+      )})..`
+    );
 
     this.setProgress(TASK_STATUS.WORKING);
 
     console.log(
-      `Task ${chalk.blueBright(
+      `Task ${chalk.gray(this.title)}(${chalk.blueBright(
         this.key
-      )} progress changed complete (${chalk.gray(
+      )}) progress changed complete (${chalk.gray(
         previousStateText
       )} -> ${chalk.green(currentStateText)})`
     );

@@ -11,7 +11,8 @@
     "omt-list": "cli/oh-my-task-list.mjs",
     "omt-select": "cli/oh-my-task-select.mjs",
     "omt-pr": "cli/oh-my-task-pr.mjs",
-    "omt-finish": "cli/oh-my-task-finish.mjs"
+    "omt-finish": "cli/oh-my-task-finish.mjs",
+    "omt-clean": "cli/oh-my-task-clean.mjs"
   },
   "scripts": {
     "release": "node ./release.mjs",
@@ -24,7 +25,8 @@
     "omt-select": "node ./cli/oh-my-task-select.mjs",
     "omt-pr": "node ./cli/oh-my-task-pr.mjs",
     "omt-finish": "node ./cli/oh-my-task-finish.mjs",
-    "omt-git": "node ./cli/oh-my-task-git.mjs"
+    "omt-git": "node ./cli/oh-my-task-git.mjs",
+    "omt-clean": "node ./cli/oh-my-task-clean.mjs"
   },
   "keywords": [
     "oh-my-task",
