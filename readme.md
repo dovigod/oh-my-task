@@ -5,7 +5,7 @@
 ## Introduction
 
 OH-MY-TASK is mainly focusing on helping indie developers to manage their projects neatly.
-It basically do things by unit called 'Task' and connects Task related actions with wrapped git commands.
+It basically do things by unit called 'Task' and connects Task related actions with git commands under the hood.
 
 Goal is to let indie developers free from forgetting what to do, spliting tasks from large commits etc.
 
